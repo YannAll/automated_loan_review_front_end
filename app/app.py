@@ -1,7 +1,42 @@
 import streamlit as st
 import requests
+import base64
 
-st.markdown("""# Are you eligible to borrow?
+#st.image('../raw_data/FROG_BANK.png', caption='',  width=125)
+
+def load_image(path):
+    with open(path, 'rb') as f:
+        data = f.read()
+    encoded = base64.b64encode(data).decode()
+    return encoded
+
+path = "../raw_data/FROG_BANK.png"
+encoded = load_image(path)
+
+CSS=f'''
+h1 {{
+    color: white;
+    background-color: #538935;
+
+}}
+h2 {{
+    color: white;
+    background-color: #538935;
+
+}}
+.stApp {{
+    background-color:#f8f8f8;
+    background-image: url("data:image/png;base64,{encoded}");
+    background-repeat: no-repeat;
+    background-position: 90% 10%;
+    background-size: 125px 166px;
+    }}
+'''
+#RGV COLOR = 83,137,53
+
+st.write(f'<style>{CSS}</style>', unsafe_allow_html=True)
+
+st.markdown("""#  Are you eligible to borrow?
 ## Check if you're bankable !! 💵
 """)
 
@@ -30,7 +65,11 @@ else:
 #incomes
 income_input = columns[1].number_input('Annual income', min_value=0, step=5000, format='%d')
 
-open_credit_input= columns[2].radio('Have you ever subscribed to a loan?', ('First time', 'I plead guilty !'))
+open_credit_input= columns[2].radio(
+    'Have you ever subscribed to a loan?',
+    ['First time', 'I plead guilty !'],
+    horizontal=True,
+    )
 if open_credit_input=='Personal loan':
     open_credit_input='nopc'
 else:
@@ -38,10 +77,16 @@ else:
 
 #->> Project informations <<-
 st.markdown("""### About your project : """)
+
 columns = st.columns(2)
 
 #business_or_commercial
-business_or_commercial_input= columns[0].radio('Is it for business or personal use?', ('Personal loan', 'Business or commercial loan'))
+business_or_commercial_input= columns[0].radio(
+    'Is it for business or personal use?',
+    ['Personal loan', 'Business or commercial loan'],
+    label_visibility="collapsed",
+    )
+
 if business_or_commercial_input=='Personal loan':
     business_or_commercial_input='nob/c'
 else:
@@ -55,10 +100,10 @@ st.markdown("""### About the loan : """)
 columns = st.columns(2)
 
 #loan_amount
-loan_amount_input = int(columns[0].number_input('How much do you need?', min_value=10000, step=5000, format='%d'))
+loan_amount_input = int(columns[1].number_input('How much do you need?', min_value=10000, step=5000, format='%d'))
 
 #terms
-term_input = int(columns[1].slider('How long do you want to sign up for? (years)', 5, 30, 20) *12)
+term_input = int(columns[0].slider('How long do you want to sign up for? (years)', 5, 30, 20) *12)
 
 #API part
     #request construction
@@ -90,5 +135,5 @@ if st.button("Click to discover the best we can do"):
         columns[0].image(img_url_no,  width=200)
 
     else:
-        columns[1].markdown(f"at {response['interest_rate']} !!")
+        columns[1].markdown(f"**at {response['interest_rate']} !!**")
         columns[0].image(img_url_yes,  width=200)
