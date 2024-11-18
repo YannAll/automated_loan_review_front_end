@@ -3,15 +3,18 @@ import requests
 import base64
 
 #st.image('../raw_data/FROG_BANK.png', caption='',  width=125)
+#https://github.com/YannAll/automated_loan_review_front_end/blob/main/raw_data/FROG_BANK.png
+#background-image: url(https://github.com/YannAll/automated_loan_review_front_end/blob/main/raw_data/FROG_BANK.png);
+#    background-image: url("data:image/png;base64,{encoded}");
 
-def load_image(path):
-    with open(path, 'rb') as f:
-        data = f.read()
-    encoded = base64.b64encode(data).decode()
-    return encoded
+#def load_image(path):
+#    with open(path, 'rb') as f:
+#        data = f.read()
+#    encoded = base64.b64encode(data).decode()
+#    return encoded
 
-path = "../raw_data/FROG_BANK.png"
-encoded = load_image(path)
+#path = "../raw_data/FROG_BANK.png"
+#encoded = load_image(path)
 
 CSS=f'''
 h1 {{
@@ -26,7 +29,7 @@ h2 {{
 }}
 .stApp {{
     background-color:#f8f8f8;
-    background-image: url("data:image/png;base64,{encoded}");
+    background-image: url("https://github.com/YannAll/automated_loan_review_front_end/blob/e4c4434ee3d68c874b7d6e5ec440b08345bc0a5c/raw_data/FROG_BANK.png?raw=true");
     background-repeat: no-repeat;
     background-position: 90% 10%;
     background-size: 125px 166px;
