@@ -4,6 +4,11 @@ import requests
 
 #st.image('../raw_data/FROG_BANK.png', caption='',  width=125)
 
+#    background-image: url("https://github.com/YannAll/automated_loan_review_front_end/blob/e4c4434ee3d68c874b7d6e5ec440b08345bc0a5c/raw_data/FROG_BANK.png?raw=true");
+#    background-repeat: no-repeat;
+#    background-position: 90% 10%;
+#    background-size: 125px 166px;
+
 #def load_image(path):
 #    with open(path, 'rb') as f:
 #        data = f.read()
@@ -24,10 +29,7 @@ h2 {{
 }}
 .stApp {{
     background-color:#f8f8f8;
-    background-image: url("https://github.com/YannAll/automated_loan_review_front_end/blob/e4c4434ee3d68c874b7d6e5ec440b08345bc0a5c/raw_data/FROG_BANK.png?raw=true");
-    background-repeat: no-repeat;
-    background-position: 90% 10%;
-    background-size: 125px 166px;
+
     }}
 '''
 #RGV COLOR = 83,137,53
@@ -119,8 +121,8 @@ params = {
     'term' : term_input,
 }
 
-img_url_no="https://ih1.redbubble.net/image.1736163822.8931/bg,f8f8f8-flat,750x,075,f-pad,750x1000,f8f8f8.jpg"
-img_url_yes="https://ih1.redbubble.net/image.1732971092.0283/bg,f8f8f8-flat,750x,075,f-pad,750x1000,f8f8f8.jpg"
+#img_url_no="https://ih1.redbubble.net/image.1736163822.8931/bg,f8f8f8-flat,750x,075,f-pad,750x1000,f8f8f8.jpg"
+#img_url_yes="https://ih1.redbubble.net/image.1732971092.0283/bg,f8f8f8-flat,750x,075,f-pad,750x1000,f8f8f8.jpg"
 
 
 if st.button("Click to discover the best we can do"):
@@ -128,10 +130,11 @@ if st.button("Click to discover the best we can do"):
     response = requests.get(url, params=params).json()
     columns = st.columns(2)
     columns[1].markdown(f"**{str(response['status'])}**")
+    columns[1].markdown(f"**at {response['interest_rate']} !!**")
 
-    if response['status'][-15:]=="is not approved":
-        columns[0].image(img_url_no,  width=200)
+    #if response['status'][-15:]=="is not approved":
+    #    columns[0].image(img_url_no,  width=200)
 
-    else:
-        columns[1].markdown(f"**at {response['interest_rate']} !!**")
-        columns[0].image(img_url_yes,  width=200)
+    #else:
+    #    columns[1].markdown(f"**at {response['interest_rate']} !!**")
+    #    columns[0].image(img_url_yes,  width=200)
