@@ -1,11 +1,8 @@
 import streamlit as st
 import requests
-import base64
+#import base64
 
 #st.image('../raw_data/FROG_BANK.png', caption='',  width=125)
-#https://github.com/YannAll/automated_loan_review_front_end/blob/main/raw_data/FROG_BANK.png
-#background-image: url(https://github.com/YannAll/automated_loan_review_front_end/blob/main/raw_data/FROG_BANK.png);
-#    background-image: url("data:image/png;base64,{encoded}");
 
 #def load_image(path):
 #    with open(path, 'rb') as f:
@@ -20,12 +17,10 @@ CSS=f'''
 h1 {{
     color: white;
     background-color: #538935;
-
 }}
 h2 {{
     color: white;
     background-color: #538935;
-
 }}
 .stApp {{
     background-color:#f8f8f8;
