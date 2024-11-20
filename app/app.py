@@ -28,14 +28,6 @@ html, body, h1, h2, h3,  [class*="css"]  {
     font-family: 'Playfair Display', serif;
     }
 '''
-
-#CSS2='''
-#.stApp  {
-#background-image: url("https://i.pinimg.com/originals/4d/68/cd/4d68cd156b67ed38303691834e7a9628.gif");
-#background-size: cover;
-#}
-#'''
-
 st.markdown(f'<style>{CSS}</style>', unsafe_allow_html=True)
 
 st.markdown("""# Are you eligible to borrow?
